@@ -8,7 +8,7 @@
 ### 1. Capture d'écran du 2025-11-08 22-54-04-1.png
 **Category:** Frontend Security Testing - Duplicate/Variant Test
 
-![Frontend Security Test Variant](autoScan-front/Capture%20d%27écran%20du%202025-11-08%2022-54-04-1.png)
+![Frontend Security Test Variant](autoScan-front/frontend-01.png)
 
 **Problem:**
 The screenshot shows a duplicate or variant test of the initial security scan. This may indicate testing different attack vectors or retesting after modifications.
@@ -24,7 +24,7 @@ Document each test variant's purpose clearly. Ensure all test results are compar
 ### 2. Capture d'écran du 2025-11-08 22-54-04.png
 **Category:** Frontend Security Testing - Initial Scan
 
-![Frontend Security Initial Scan](autoScan-front/Capture%20d%27écran%20du%202025-11-08%2022-54-04.png)
+![Frontend Security Initial Scan](autoScan-front/frontend-02.png)
 
 **Problem:**
 This appears to be the initial security scan of the frontend application, likely showing the baseline security posture or first vulnerability detection.
@@ -40,7 +40,7 @@ Review all identified vulnerabilities systematically. Implement input validation
 ### 3. Capture d'écran du 2025-11-08 22-54-18.png
 **Category:** Frontend Security Testing - Follow-up Analysis
 
-![Frontend Security Follow-up](autoScan-front/Capture%20d%27écran%20du%202025-11-08%2022-54-18.png)
+![Frontend Security Follow-up](autoScan-front/frontend-03.png)
 
 **Problem:**
 This screenshot captures additional security analysis performed shortly after the initial scan, possibly showing deeper inspection of discovered issues.
@@ -56,7 +56,7 @@ Prioritize vulnerabilities by severity. Address critical issues first, such as a
 ### 4. Capture d'écran du 2025-11-08 22-54-41.png
 **Category:** Frontend Security Testing - Extended Testing
 
-![Frontend Extended Testing](autoScan-front/Capture%20d%27écran%20du%202025-11-08%2022-54-41.png)
+![Frontend Extended Testing](autoScan-front/frontend-04.png)
 
 **Problem:**
 This screenshot shows extended security testing, potentially exploring specific attack vectors or testing additional functionality discovered during earlier scans.
@@ -72,7 +72,7 @@ Implement defense-in-depth strategies. Use Content Security Policy (CSP), input 
 ### 5. Capture d'écran du 2025-11-08 22-55-06.png
 **Category:** Frontend Security Testing - Advanced Testing Phase
 
-![Frontend Advanced Testing](autoScan-front/Capture%20d%27écran%20du%202025-11-08%2022-55-06.png)
+![Frontend Advanced Testing](autoScan-front/frontend-05.png)
 
 **Problem:**
 This screenshot represents advanced testing phase, possibly testing for complex vulnerabilities like DOM-based attacks or advanced injection techniques.
@@ -88,7 +88,7 @@ Implement framework-level security features. Use security libraries, enable HTTP
 ### 6. Capture d'écran du 2025-11-08 22-55-41.png
 **Category:** Frontend Security Testing - Final Analysis
 
-![Frontend Final Analysis](autoScan-front/Capture%20d%27écran%20du%202025-11-08%2022-55-41.png)
+![Frontend Final Analysis](autoScan-front/frontend-06.png)
 
 **Problem:**
 This final screenshot likely shows the completion of the security scan or summary of findings from the frontend testing session.
