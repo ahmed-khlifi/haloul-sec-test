@@ -92,9 +92,6 @@ Add the `X-Content-Type-Options: nosniff` header to all HTTP responses. This for
 
 <img src="scanBackend/actuatorTest.png" width="600" alt="Actuator Exposure">
 
-**Problem:**
-The screenshot shows exposed Spring Boot Actuator endpoints that reveal sensitive application information and management capabilities.
-
 **Description:**
 Actuator API secured to hide configurations and database connection variables, as well as the application admin requires authentication to access these endpoints.
 

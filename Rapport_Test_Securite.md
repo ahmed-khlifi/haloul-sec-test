@@ -93,9 +93,6 @@ Ajouter l'en-tête `X-Content-Type-Options: nosniff` à toutes les réponses HTT
 
 <img src="scanBackend/actuatorTest.png" width="600" alt="Exposition Actuator">
 
-**Problème :**
-La capture d'écran montre des endpoints Spring Boot Actuator exposés qui révèlent des informations sensibles sur l'application et des capacités de gestion.
-
 **Description :**
 Api actuator securisé pour cacher les configuration et les variable de connexion de la base de donnée , ainsi que l admin de l applicagion necessite une authentification pour accede a ces end points
 
