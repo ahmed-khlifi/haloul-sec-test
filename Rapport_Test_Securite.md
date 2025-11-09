@@ -5,99 +5,99 @@
 
 ## Captures d'écran AutoScan-Front
 
-### 1. Capture d'écran du 2025-11-08 22-54-04-1.png
-**Catégorie :** Tests de Sécurité Frontend - Test Dupliqué/Variante
+### 1. En-tête Anti-clickjacking Manquant
+**Catégorie :** Protection Clickjacking - En-tête de Sécurité Manquant
 
-![Variante Test de Sécurité Frontend](autoScan-front/frontend-01.png)
+![En-tête Anti-clickjacking Manquant](autoScan-front/frontend-01.png)
 
 **Problème :**
-La capture d'écran montre un test dupliqué ou une variante du scan de sécurité initial. Cela peut indiquer des tests de différents vecteurs d'attaque ou des nouveaux tests après modifications.
+L'application ne possède pas l'en-tête X-Frame-Options ou Content-Security-Policy avec la directive frame-ancestors. Cela permet d'intégrer la page dans des iframes, rendant possible les attaques de clickjacking.
 
 **Raison :**
-Plusieurs exécutions de tests sont nécessaires pour vérifier le comportement cohérent et s'assurer que les vulnérabilités sont correctement identifiées dans différents scénarios.
+Sans en-têtes anti-clickjacking, les attaquants peuvent charger l'application dans une iframe invisible et inciter les utilisateurs à cliquer sur des éléments cachés, conduisant potentiellement à des actions non autorisées.
 
 **Solution :**
-Documenter clairement l'objectif de chaque variante de test. S'assurer que tous les résultats de tests sont comparés pour identifier toute incohérence dans la détection des vulnérabilités.
+Ajouter l'en-tête `X-Frame-Options: DENY` ou `X-Frame-Options: SAMEORIGIN`. Alternativement, utiliser Content-Security-Policy avec la directive `frame-ancestors 'none'` ou `frame-ancestors 'self'` pour prévenir les attaques par framing.
 
 ---
 
-### 2. Capture d'écran du 2025-11-08 22-54-04.png
-**Catégorie :** Tests de Sécurité Frontend - Scan Initial
+### 2. CSP : Échec de Définir une Directive Sans Fallback
+**Catégorie :** Content Security Policy - Configuration de Directive Manquante
 
-![Scan Initial de Sécurité Frontend](autoScan-front/frontend-02.png)
+![Problème Configuration CSP](autoScan-front/frontend-02.png)
 
 **Problème :**
-Il s'agit du scan de sécurité initial de l'application frontend, montrant probablement la posture de sécurité de base ou la première détection de vulnérabilités.
+La Content Security Policy (CSP) manque de directives critiques sans configurations de secours appropriées. Cela affaiblit la posture de sécurité et peut permettre à certains types d'attaques de réussir.
 
 **Raison :**
-L'application frontend peut avoir des endpoints exposés, des configurations non sécurisées ou des vulnérabilités côté client qui doivent être identifiées.
+Lorsque les directives CSP ne sont pas correctement définies, le navigateur ne peut pas appliquer de restrictions de sécurité sur les sources de contenu, laissant l'application vulnérable aux attaques XSS et d'injection de données.
 
 **Solution :**
-Examiner systématiquement toutes les vulnérabilités identifiées. Implémenter la validation des entrées, des configurations sécurisées et des mécanismes d'authentification appropriés sur le frontend.
+Définir explicitement toutes les directives CSP nécessaires (script-src, style-src, img-src, etc.). Inclure une directive default-src comme fallback. Utiliser des politiques strictes comme 'self' et éviter 'unsafe-inline' et 'unsafe-eval' autant que possible.
 
 ---
 
-### 3. Capture d'écran du 2025-11-08 22-54-18.png
-**Catégorie :** Tests de Sécurité Frontend - Analyse de Suivi
+### 3. En-tête Content Security Policy (CSP) Non Défini
+**Catégorie :** En-têtes de Sécurité Manquants - CSP Non Configuré
 
-![Suivi de Sécurité Frontend](autoScan-front/frontend-03.png)
+![En-tête CSP Non Défini](autoScan-front/frontend-03.png)
 
 **Problème :**
-Cette capture d'écran montre une analyse de sécurité supplémentaire effectuée peu après le scan initial, montrant possiblement une inspection plus approfondie des problèmes découverts.
+L'application n'envoie pas d'en-tête Content Security Policy. Cela laisse l'application vulnérable aux attaques Cross-Site Scripting (XSS) et autres vulnérabilités d'injection de code.
 
 **Raison :**
-Les scans initiaux peuvent déclencher des alertes qui nécessitent une enquête plus approfondie pour comprendre la portée complète et l'impact des vulnérabilités.
+Sans CSP, le navigateur n'a aucune restriction sur les scripts, styles ou ressources qui peuvent être chargés et exécutés, permettant aux attaquants d'injecter et d'exécuter du code malveillant.
 
 **Solution :**
-Prioriser les vulnérabilités par gravité. Traiter d'abord les problèmes critiques, tels que les contournements d'authentification, les vulnérabilités XSS ou l'exposition de données sensibles.
+Implémenter un en-tête Content-Security-Policy avec les directives appropriées. Commencer avec une politique restrictive comme `default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'` et ajuster selon les besoins de l'application.
 
 ---
 
-### 4. Capture d'écran du 2025-11-08 22-54-41.png
-**Catégorie :** Tests de Sécurité Frontend - Tests Étendus
+### 4. Mauvaise Configuration Inter-domaines (CORS)
+**Catégorie :** Mauvaise Configuration Cross-Origin Resource Sharing
 
-![Tests Étendus Frontend](autoScan-front/frontend-04.png)
+![Mauvaise Configuration CORS](autoScan-front/frontend-04.png)
 
 **Problème :**
-Cette capture d'écran montre des tests de sécurité étendus, explorant potentiellement des vecteurs d'attaque spécifiques ou testant des fonctionnalités supplémentaires découvertes lors des scans précédents.
+L'application a une configuration Cross-Origin Resource Sharing (CORS) inappropriée, permettant potentiellement à des domaines non autorisés d'accéder aux ressources ou utilisant des paramètres trop permissifs comme `Access-Control-Allow-Origin: *`.
 
 **Raison :**
-Les tests de sécurité complets nécessitent l'examen de plusieurs surfaces d'attaque et différents chemins d'interaction utilisateur au sein de l'application.
+Une mauvaise configuration CORS peut exposer des données sensibles à des sites web malveillants, permettre des appels API non autorisés depuis des origines non fiables et contourner les protections de la Same-Origin Policy.
 
 **Solution :**
-Implémenter des stratégies de défense en profondeur. Utiliser une Content Security Policy (CSP), la sanitisation des entrées et une gestion appropriée des erreurs pour atténuer les risques identifiés.
+Configurer CORS correctement en spécifiant les origines autorisées exactes au lieu de wildcards. Utiliser `Access-Control-Allow-Credentials: true` uniquement avec des origines spécifiques, jamais avec `*`. Valider et whitelister explicitement les domaines de confiance.
 
 ---
 
-### 5. Capture d'écran du 2025-11-08 22-55-06.png
-**Catégorie :** Tests de Sécurité Frontend - Phase de Tests Avancés
+### 5. Fuite d'Information via l'En-tête "X-Powered-By"
+**Catégorie :** Divulgation d'Information - Exposition de la Technologie Serveur
 
-![Tests Avancés Frontend](autoScan-front/frontend-05.png)
+![Fuite En-tête X-Powered-By](autoScan-front/frontend-05.png)
 
 **Problème :**
-Cette capture d'écran représente la phase de tests avancés, testant possiblement des vulnérabilités complexes comme les attaques basées sur le DOM ou les techniques d'injection avancées.
+Le serveur révèle des informations sur la pile technologique via l'en-tête X-Powered-By (par ex. "X-Powered-By: Express", "PHP/7.4", etc.), exposant les détails du framework et de la version aux attaquants potentiels.
 
 **Raison :**
-Les applications web modernes nécessitent des tests au-delà des vulnérabilités de base pour détecter des modèles d'attaque sophistiqués.
+La divulgation de la technologie et des versions du serveur aide les attaquants à identifier les vulnérabilités connues spécifiques à ces frameworks et à planifier des attaques ciblées contre des composants obsolètes ou vulnérables.
 
 **Solution :**
-Implémenter des fonctionnalités de sécurité au niveau du framework. Utiliser des bibliothèques de sécurité, activer HTTPS et s'assurer que toutes les entrées utilisateur sont validées côté client et côté serveur.
+Supprimer ou masquer l'en-tête X-Powered-By. Dans Express.js utiliser `app.disable('x-powered-by')`. Dans PHP définir `expose_php = Off` dans php.ini. Configurer les serveurs web (Nginx/Apache) pour masquer les informations de version.
 
 ---
 
-### 6. Capture d'écran du 2025-11-08 22-55-41.png
-**Catégorie :** Tests de Sécurité Frontend - Analyse Finale
+### 6. En-tête X-Content-Type-Options Manquant
+**Catégorie :** Sécurité MIME-Type - Protection d'En-tête Manquante
 
-![Analyse Finale Frontend](autoScan-front/frontend-06.png)
+![X-Content-Type-Options Manquant](autoScan-front/frontend-06.png)
 
 **Problème :**
-Cette capture d'écran finale montre probablement l'achèvement du scan de sécurité ou le résumé des résultats de la session de tests frontend.
+L'application ne définit pas l'en-tête X-Content-Type-Options. Cela permet aux navigateurs d'effectuer du MIME-type sniffing, interprétant potentiellement les fichiers différemment du type déclaré.
 
 **Raison :**
-Un rapport de sécurité complet nécessite de documenter tous les résultats, leurs niveaux de gravité et de fournir des étapes de remédiation concrètes.
+Sans cet en-tête, les navigateurs peuvent exécuter le contenu différemment de ce qui était prévu. Par exemple, un fichier texte pourrait être interprété comme JavaScript, ou une image comme HTML, conduisant à des vulnérabilités XSS par confusion de type de contenu.
 
 **Solution :**
-Créer un plan de remédiation basé sur tous les résultats. Planifier de nouveaux tests de sécurité après l'implémentation des corrections pour vérifier que les vulnérabilités sont correctement résolues.
+Ajouter l'en-tête `X-Content-Type-Options: nosniff` à toutes les réponses HTTP. Cela force les navigateurs à suivre strictement le Content-Type déclaré et prévient les attaques par MIME-sniffing.
 
 ---
 

@@ -5,99 +5,99 @@
 
 ## AutoScan-Front Screenshots
 
-### 1. Capture d'écran du 2025-11-08 22-54-04-1.png
-**Category:** Frontend Security Testing - Duplicate/Variant Test
+### 1. Missing Anti-clickjacking Header
+**Category:** Clickjacking Protection - Missing Security Header
 
-![Frontend Security Test Variant](autoScan-front/frontend-01.png)
+![Missing Anti-clickjacking Header](autoScan-front/frontend-01.png)
 
 **Problem:**
-The screenshot shows a duplicate or variant test of the initial security scan. This may indicate testing different attack vectors or retesting after modifications.
+The application is missing the X-Frame-Options or Content-Security-Policy header with frame-ancestors directive. This allows the page to be embedded in iframes, enabling clickjacking attacks.
 
 **Reason:**
-Multiple test runs are needed to verify consistent behavior and ensure vulnerabilities are properly identified across different scenarios.
+Without anti-clickjacking headers, attackers can load the application in an invisible iframe and trick users into clicking hidden elements, potentially leading to unauthorized actions.
 
 **Solution:**
-Document each test variant's purpose clearly. Ensure all test results are compared to identify any inconsistencies in vulnerability detection.
+Add `X-Frame-Options: DENY` or `X-Frame-Options: SAMEORIGIN` header. Alternatively, use Content-Security-Policy with `frame-ancestors 'none'` or `frame-ancestors 'self'` directive to prevent framing attacks.
 
 ---
 
-### 2. Capture d'écran du 2025-11-08 22-54-04.png
-**Category:** Frontend Security Testing - Initial Scan
+### 2. CSP: Failure to Define Directive with No Fallback
+**Category:** Content Security Policy - Missing Directive Configuration
 
-![Frontend Security Initial Scan](autoScan-front/frontend-02.png)
+![CSP Configuration Issue](autoScan-front/frontend-02.png)
 
 **Problem:**
-This appears to be the initial security scan of the frontend application, likely showing the baseline security posture or first vulnerability detection.
+The Content Security Policy (CSP) is missing critical directives without proper fallback configurations. This weakens the security posture and may allow certain types of attacks to succeed.
 
 **Reason:**
-The frontend application may have exposed endpoints, insecure configurations, or client-side vulnerabilities that need to be identified.
+When CSP directives are not properly defined, the browser cannot enforce security restrictions on content sources, leaving the application vulnerable to XSS and data injection attacks.
 
 **Solution:**
-Review all identified vulnerabilities systematically. Implement input validation, secure configurations, and proper authentication mechanisms on the frontend.
+Define all necessary CSP directives explicitly (script-src, style-src, img-src, etc.). Include a default-src directive as a fallback. Use strict policies like 'self' and avoid 'unsafe-inline' and 'unsafe-eval' whenever possible.
 
 ---
 
-### 3. Capture d'écran du 2025-11-08 22-54-18.png
-**Category:** Frontend Security Testing - Follow-up Analysis
+### 3. Content Security Policy (CSP) Header Not Set
+**Category:** Missing Security Headers - CSP Not Configured
 
-![Frontend Security Follow-up](autoScan-front/frontend-03.png)
+![CSP Header Not Set](autoScan-front/frontend-03.png)
 
 **Problem:**
-This screenshot captures additional security analysis performed shortly after the initial scan, possibly showing deeper inspection of discovered issues.
+The application does not send a Content Security Policy header. This leaves the application vulnerable to Cross-Site Scripting (XSS) attacks and other code injection vulnerabilities.
 
 **Reason:**
-Initial scans may trigger alerts that require further investigation to understand the full scope and impact of vulnerabilities.
+Without CSP, the browser has no restrictions on which scripts, styles, or resources can be loaded and executed, allowing attackers to inject and run malicious code.
 
 **Solution:**
-Prioritize vulnerabilities by severity. Address critical issues first, such as authentication bypasses, XSS vulnerabilities, or sensitive data exposure.
+Implement a Content-Security-Policy header with appropriate directives. Start with a restrictive policy like `default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'` and adjust based on application needs.
 
 ---
 
-### 4. Capture d'écran du 2025-11-08 22-54-41.png
-**Category:** Frontend Security Testing - Extended Testing
+### 4. Mauvaise Configuration Inter-domaines
+**Category:** Cross-Origin Resource Sharing (CORS) Misconfiguration
 
-![Frontend Extended Testing](autoScan-front/frontend-04.png)
+![CORS Misconfiguration](autoScan-front/frontend-04.png)
 
 **Problem:**
-This screenshot shows extended security testing, potentially exploring specific attack vectors or testing additional functionality discovered during earlier scans.
+The application has improper Cross-Origin Resource Sharing (CORS) configuration, potentially allowing unauthorized domains to access resources or using overly permissive settings like `Access-Control-Allow-Origin: *`.
 
 **Reason:**
-Comprehensive security testing requires examining multiple attack surfaces and different user interaction paths within the application.
+Misconfigured CORS can expose sensitive data to malicious websites, allow unauthorized API calls from untrusted origins, and bypass Same-Origin Policy protections.
 
 **Solution:**
-Implement defense-in-depth strategies. Use Content Security Policy (CSP), input sanitization, and proper error handling to mitigate identified risks.
+Configure CORS properly by specifying exact allowed origins instead of wildcards. Use `Access-Control-Allow-Credentials: true` only with specific origins, never with `*`. Validate and whitelist trusted domains explicitly.
 
 ---
 
-### 5. Capture d'écran du 2025-11-08 22-55-06.png
-**Category:** Frontend Security Testing - Advanced Testing Phase
+### 5. Server Leaks Information via "X-Powered-By" HTTP Response Header
+**Category:** Information Disclosure - Server Technology Exposure
 
-![Frontend Advanced Testing](autoScan-front/frontend-05.png)
+![X-Powered-By Header Leak](autoScan-front/frontend-05.png)
 
 **Problem:**
-This screenshot represents advanced testing phase, possibly testing for complex vulnerabilities like DOM-based attacks or advanced injection techniques.
+The server reveals technology stack information through the X-Powered-By header (e.g., "X-Powered-By: Express", "PHP/7.4", etc.), exposing framework and version details to potential attackers.
 
 **Reason:**
-Modern web applications require testing beyond basic vulnerabilities to catch sophisticated attack patterns.
+Disclosing server technology and versions helps attackers identify known vulnerabilities specific to those frameworks and plan targeted attacks against outdated or vulnerable components.
 
 **Solution:**
-Implement framework-level security features. Use security libraries, enable HTTPS, and ensure all user inputs are validated both client-side and server-side.
+Remove or suppress the X-Powered-By header. In Express.js use `app.disable('x-powered-by')`. In PHP set `expose_php = Off` in php.ini. Configure web servers (Nginx/Apache) to hide version information.
 
 ---
 
-### 6. Capture d'écran du 2025-11-08 22-55-41.png
-**Category:** Frontend Security Testing - Final Analysis
+### 6. X-Content-Type-Options Header Missing
+**Category:** MIME-Type Security - Missing Header Protection
 
-![Frontend Final Analysis](autoScan-front/frontend-06.png)
+![X-Content-Type-Options Missing](autoScan-front/frontend-06.png)
 
 **Problem:**
-This final screenshot likely shows the completion of the security scan or summary of findings from the frontend testing session.
+The application does not set the X-Content-Type-Options header. This allows browsers to perform MIME-type sniffing, potentially interpreting files as a different type than declared.
 
 **Reason:**
-A comprehensive security report requires documenting all findings, their severity levels, and providing actionable remediation steps.
+Without this header, browsers may execute content differently than intended. For example, a text file could be interpreted as JavaScript, or an image as HTML, leading to XSS vulnerabilities through content type confusion.
 
 **Solution:**
-Create a remediation plan based on all findings. Schedule security retesting after fixes are implemented to verify vulnerabilities are properly resolved.
+Add the `X-Content-Type-Options: nosniff` header to all HTTP responses. This forces browsers to strictly follow the declared Content-Type and prevents MIME-sniffing attacks.
 
 ---
 
