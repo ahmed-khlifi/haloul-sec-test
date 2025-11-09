@@ -8,6 +8,8 @@
 ### 1. Capture d'écran du 2025-11-08 22-54-04-1.png
 **Category:** Frontend Security Testing - Duplicate/Variant Test
 
+<img src="autoScan-front/Capture d'écran du 2025-11-08 22-54-04-1.png" width="600" alt="Frontend Security Test Variant">
+
 **Problem:**
 The screenshot shows a duplicate or variant test of the initial security scan. This may indicate testing different attack vectors or retesting after modifications.
 
@@ -21,6 +23,8 @@ Document each test variant's purpose clearly. Ensure all test results are compar
 
 ### 2. Capture d'écran du 2025-11-08 22-54-04.png
 **Category:** Frontend Security Testing - Initial Scan
+
+<img src="autoScan-front/Capture d'écran du 2025-11-08 22-54-04.png" width="600" alt="Frontend Security Initial Scan">
 
 **Problem:**
 This appears to be the initial security scan of the frontend application, likely showing the baseline security posture or first vulnerability detection.
@@ -36,6 +40,8 @@ Review all identified vulnerabilities systematically. Implement input validation
 ### 3. Capture d'écran du 2025-11-08 22-54-18.png
 **Category:** Frontend Security Testing - Follow-up Analysis
 
+<img src="autoScan-front/Capture d'écran du 2025-11-08 22-54-18.png" width="600" alt="Frontend Security Follow-up">
+
 **Problem:**
 This screenshot captures additional security analysis performed shortly after the initial scan, possibly showing deeper inspection of discovered issues.
 
@@ -49,6 +55,8 @@ Prioritize vulnerabilities by severity. Address critical issues first, such as a
 
 ### 4. Capture d'écran du 2025-11-08 22-54-41.png
 **Category:** Frontend Security Testing - Extended Testing
+
+<img src="autoScan-front/Capture d'écran du 2025-11-08 22-54-41.png" width="600" alt="Frontend Extended Testing">
 
 **Problem:**
 This screenshot shows extended security testing, potentially exploring specific attack vectors or testing additional functionality discovered during earlier scans.
@@ -64,6 +72,8 @@ Implement defense-in-depth strategies. Use Content Security Policy (CSP), input 
 ### 5. Capture d'écran du 2025-11-08 22-55-06.png
 **Category:** Frontend Security Testing - Advanced Testing Phase
 
+<img src="autoScan-front/Capture d'écran du 2025-11-08 22-55-06.png" width="600" alt="Frontend Advanced Testing">
+
 **Problem:**
 This screenshot represents advanced testing phase, possibly testing for complex vulnerabilities like DOM-based attacks or advanced injection techniques.
 
@@ -77,6 +87,8 @@ Implement framework-level security features. Use security libraries, enable HTTP
 
 ### 6. Capture d'écran du 2025-11-08 22-55-41.png
 **Category:** Frontend Security Testing - Final Analysis
+
+<img src="autoScan-front/Capture d'écran du 2025-11-08 22-55-41.png" width="600" alt="Frontend Final Analysis">
 
 **Problem:**
 This final screenshot likely shows the completion of the security scan or summary of findings from the frontend testing session.
@@ -94,6 +106,8 @@ Create a remediation plan based on all findings. Schedule security retesting aft
 ### 7. actuatorTest.png
 **Category:** Information Disclosure - Spring Boot Actuator Exposure
 
+<img src="scanBackend/actuatorTest.png" width="600" alt="Actuator Exposure">
+
 **Problem:**
 The screenshot shows exposed Spring Boot Actuator endpoints that reveal sensitive application information and management capabilities.
 
@@ -107,6 +121,8 @@ Secure actuator endpoints using Spring Security. Disable unnecessary endpoints a
 
 ### 8. backend-graph-end points.png
 **Category:** API Enumeration - GraphQL Endpoint Discovery
+
+<img src="scanBackend/backend-graph-end points.png" width="600" alt="GraphQL Endpoints">
 
 **Problem:**
 This screenshot displays the GraphQL API endpoints structure, potentially showing the complete API schema and available operations.
@@ -122,6 +138,8 @@ Disable GraphQL introspection in production environments. Implement query depth 
 ### 9. backend-schema-shown.png
 **Category:** Information Disclosure - Database Schema Exposure
 
+<img src="scanBackend/backend-schema-shown.png" width="600" alt="Database Schema Exposure">
+
 **Problem:**
 The screenshot reveals the backend database schema structure, exposing table names, relationships, and data organization.
 
@@ -135,6 +153,8 @@ Implement proper error handling to prevent schema leakage. Use ORM frameworks wi
 
 ### 10. backend-test1.png
 **Category:** Backend Security Testing - Initial Vulnerability Assessment
+
+<img src="scanBackend/backend-test1.png" width="600" alt="Backend Initial Test">
 
 **Problem:**
 This screenshot shows initial backend testing, likely identifying authentication, authorization, or input validation weaknesses.
@@ -150,6 +170,8 @@ Implement robust authentication and authorization checks. Use frameworks like Sp
 ### 11. deepQueryBackend.png
 **Category:** Denial of Service - Deep Query Attack
 
+<img src="scanBackend/deepQueryBackend.png" width="600" alt="Deep Query Attack">
+
 **Problem:**
 This screenshot demonstrates a deep query attack against the backend, potentially causing performance degradation or service disruption.
 
@@ -163,6 +185,8 @@ Implement query depth limiting (max depth: 3-5 levels). Add query complexity ana
 
 ### 12. deepQueryExtreme.png
 **Category:** Denial of Service - Extreme Deep Query Exploitation
+
+<img src="scanBackend/deepQueryExtreme.png" width="600" alt="Extreme Deep Query">
 
 **Problem:**
 This screenshot shows an extreme deep query attack, demonstrating maximum exploitation of nested query vulnerabilities.
@@ -178,6 +202,8 @@ Use libraries like `graphql-depth-limit` and `graphql-validation-complexity`. Se
 ### 13. introcepction_query.png
 **Category:** Information Disclosure - GraphQL Introspection
 
+<img src="scanBackend/introcepction_query.png" width="600" alt="GraphQL Introspection">
+
 **Problem:**
 This screenshot shows GraphQL introspection queries revealing the complete API schema, types, and available mutations.
 
@@ -191,6 +217,8 @@ Disable introspection in production: `graphql.playground.enabled=false` and `gra
 
 ### 14. jwtTokenTest.png
 **Category:** Authentication Bypass - JWT Token Vulnerability
+
+<img src="scanBackend/jwtTokenTest.png" width="600" alt="JWT Token Test">
 
 **Problem:**
 This screenshot demonstrates JWT token manipulation or validation bypass, allowing unauthorized access to protected resources.
@@ -206,6 +234,8 @@ Use strong signing algorithms (RS256 instead of HS256). Validate token signature
 ### 15. sqlinjectionRowAdd.png
 **Category:** SQL Injection - Data Manipulation
 
+<img src="scanBackend/sqlinjectionRowAdd.png" width="600" alt="SQL Injection Row Add">
+
 **Problem:**
 This screenshot shows successful SQL injection attack adding unauthorized rows to the database.
 
@@ -219,6 +249,8 @@ Use prepared statements and parameterized queries exclusively. Implement ORM fra
 
 ### 16. sqlInjectionUnion.png
 **Category:** SQL Injection - Union-Based Data Extraction
+
+<img src="scanBackend/sqlInjectionUnion.png" width="600" alt="SQL Injection Union">
 
 **Problem:**
 This screenshot demonstrates UNION-based SQL injection extracting sensitive data from database tables.
@@ -235,6 +267,8 @@ Implement strict input validation and whitelist allowed characters. Use ORM fram
 
 ### 17. validator.png
 **Category:** Input Validation Testing
+
+<img src="validator.png" width="600" alt="Validator Test">
 
 **Problem:**
 This screenshot likely shows validation testing results, possibly demonstrating bypasses in input validation mechanisms.
