@@ -37,23 +37,8 @@ Définir explicitement toutes les directives CSP nécessaires (script-src, style
 
 ---
 
-### 3. En-tête Content Security Policy (CSP) Non Défini
-**Catégorie :** En-têtes de Sécurité Manquants - CSP Non Configuré
 
-![En-tête CSP Non Défini](autoScan-front/frontend-03.png)
-
-**Problème :**
-L'application n'envoie pas d'en-tête Content Security Policy. Cela laisse l'application vulnérable aux attaques Cross-Site Scripting (XSS) et autres vulnérabilités d'injection de code.
-
-**Raison :**
-Sans CSP, le navigateur n'a aucune restriction sur les scripts, styles ou ressources qui peuvent être chargés et exécutés, permettant aux attaquants d'injecter et d'exécuter du code malveillant.
-
-**Solution :**
-Implémenter un en-tête Content-Security-Policy avec les directives appropriées. Commencer avec une politique restrictive comme `default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'` et ajuster selon les besoins de l'application.
-
----
-
-### 4. Mauvaise Configuration Inter-domaines (CORS)
+### 3. Mauvaise Configuration Inter-domaines (CORS)
 **Catégorie :** Mauvaise Configuration Cross-Origin Resource Sharing
 
 ![Mauvaise Configuration CORS](autoScan-front/frontend-04.png)
@@ -69,7 +54,7 @@ Configurer CORS correctement en spécifiant les origines autorisées exactes au 
 
 ---
 
-### 5. Fuite d'Information via l'En-tête "X-Powered-By"
+### 4. Fuite d'Information via l'En-tête "X-Powered-By"
 **Catégorie :** Divulgation d'Information - Exposition de la Technologie Serveur
 
 ![Fuite En-tête X-Powered-By](autoScan-front/frontend-05.png)
@@ -85,7 +70,7 @@ Supprimer ou masquer l'en-tête X-Powered-By. Dans Express.js utiliser `app.disa
 
 ---
 
-### 6. En-tête X-Content-Type-Options Manquant
+### 5. En-tête X-Content-Type-Options Manquant
 **Catégorie :** Sécurité MIME-Type - Protection d'En-tête Manquante
 
 ![X-Content-Type-Options Manquant](autoScan-front/frontend-06.png)
@@ -111,12 +96,8 @@ Ajouter l'en-tête `X-Content-Type-Options: nosniff` à toutes les réponses HTT
 **Problème :**
 La capture d'écran montre des endpoints Spring Boot Actuator exposés qui révèlent des informations sensibles sur l'application et des capacités de gestion.
 
-**Raison :**
-Les endpoints Actuator sont souvent laissés non sécurisés en production, permettant aux attaquants de collecter des informations système, l'état de santé et potentiellement modifier le comportement de l'application.
-
-**Solution :**
-Sécuriser les endpoints actuator avec Spring Security. Désactiver les endpoints inutiles et exiger une authentification pour les opérations de gestion sensibles. Utiliser `management.endpoints.web.exposure.include` pour limiter les endpoints exposés.
-
+**Déscription :**
+Api actuator securisé pour cacher les configuration et les variable de connexion de la base de donnée , ainsi que l admin de l applicagion necessite une authentification pour accede a ces end points
 ---
 
 ### 8. backend-graph-end points.png
