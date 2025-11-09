@@ -98,6 +98,7 @@ La capture d'écran montre des endpoints Spring Boot Actuator exposés qui rév�
 
 **Déscription :**
 Api actuator securisé pour cacher les configuration et les variable de connexion de la base de donnée , ainsi que l admin de l applicagion necessite une authentification pour accede a ces end points
+
 ---
 
 ### 8. backend-graph-end points.png
