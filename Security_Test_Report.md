@@ -37,23 +37,7 @@ Define all necessary CSP directives explicitly (script-src, style-src, img-src, 
 
 ---
 
-### 3. Content Security Policy (CSP) Header Not Set
-**Category:** Missing Security Headers - CSP Not Configured
-
-![CSP Header Not Set](autoScan-front/frontend-03.png)
-
-**Problem:**
-The application does not send a Content Security Policy header. This leaves the application vulnerable to Cross-Site Scripting (XSS) attacks and other code injection vulnerabilities.
-
-**Reason:**
-Without CSP, the browser has no restrictions on which scripts, styles, or resources can be loaded and executed, allowing attackers to inject and run malicious code.
-
-**Solution:**
-Implement a Content-Security-Policy header with appropriate directives. Start with a restrictive policy like `default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'` and adjust based on application needs.
-
----
-
-### 4. Mauvaise Configuration Inter-domaines
+### 3. Mauvaise Configuration Inter-domaines (CORS)
 **Category:** Cross-Origin Resource Sharing (CORS) Misconfiguration
 
 ![CORS Misconfiguration](autoScan-front/frontend-04.png)
@@ -69,7 +53,7 @@ Configure CORS properly by specifying exact allowed origins instead of wildcards
 
 ---
 
-### 5. Server Leaks Information via "X-Powered-By" HTTP Response Header
+### 4. Server Leaks Information via "X-Powered-By" HTTP Response Header
 **Category:** Information Disclosure - Server Technology Exposure
 
 ![X-Powered-By Header Leak](autoScan-front/frontend-05.png)
@@ -85,7 +69,7 @@ Remove or suppress the X-Powered-By header. In Express.js use `app.disable('x-po
 
 ---
 
-### 6. X-Content-Type-Options Header Missing
+### 5. X-Content-Type-Options Header Missing
 **Category:** MIME-Type Security - Missing Header Protection
 
 ![X-Content-Type-Options Missing](autoScan-front/frontend-06.png)
@@ -111,11 +95,8 @@ Add the `X-Content-Type-Options: nosniff` header to all HTTP responses. This for
 **Problem:**
 The screenshot shows exposed Spring Boot Actuator endpoints that reveal sensitive application information and management capabilities.
 
-**Reason:**
-Actuator endpoints are often left unsecured in production, allowing attackers to gather system information, health status, and potentially modify application behavior.
-
-**Solution:**
-Secure actuator endpoints using Spring Security. Disable unnecessary endpoints and require authentication for sensitive management operations. Use `management.endpoints.web.exposure.include` to limit exposed endpoints.
+**Description:**
+Actuator API secured to hide configurations and database connection variables, as well as the application admin requires authentication to access these endpoints.
 
 ---
 
